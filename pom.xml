@@ -4,23 +4,20 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.flywaydemo</groupId>
-	<artifactId>app</artifactId>
+	<artifactId>parent</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>pom</packaging>
 
-	<name>Flyway Demo Application</name>
-	<description>Flyway Demo Application</description>
+	<name>Flyway Demo Parent</name>
+	<description>Flyway Demo Parent</description>
 
-	<parent>
-		<groupId>org.flywaydemo</groupId>
-		<artifactId>parent</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-		<relativePath>..</relativePath> <!-- lookup parent from repository -->
-	</parent>
-
+	<modules>
+		<module>app</module>
+	</modules>
+	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<start-class>flyway-demo.FlywayDemoApplication</start-class>
+		<start-class>org.flywaydemo.FlywayDemoApplication</start-class>
 		<java.version>1.8</java.version>
 	</properties>
 
@@ -36,30 +33,8 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jdbc</artifactId>
-		</dependency>
-        <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-core</artifactId>
-            <version>3.2.1</version>
-        </dependency>
-        <dependency>
-            <groupId>com.oracle</groupId>
-            <artifactId>ojdbc6</artifactId>
-            <version>11.2.0.3.0</version>
-        </dependency>
-        <dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
-
-    <build>
+	
+	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
