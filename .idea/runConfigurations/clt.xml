@@ -1,0 +1,14 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="clt" type="BatchConfigurationType" factoryName="Batch">
+    <option name="INTERPRETER_OPTIONS" value="" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/app" />
+    <option name="PARENT_ENVS" value="true" />
+    <envs />
+    <module name="app" />
+    <option name="SCRIPT_NAME" value="clt.bat" />
+    <option name="PARAMETERS" value="" />
+    <RunnerSettings RunnerId="BatchRunner" />
+    <ConfigurationWrapper RunnerId="BatchRunner" />
+    <method />
+  </configuration>
+</component>
