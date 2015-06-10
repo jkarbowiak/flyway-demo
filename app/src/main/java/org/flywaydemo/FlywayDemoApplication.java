@@ -25,37 +25,30 @@ public class FlywayDemoApplication {
     @Bean
     public DataSource dataSource(FlywayProperties flywayProperties) {
         SimpleDriverDataSource dataSource = new SimpleDriverDataSource();
-        dataSource.setUsername(flywayProperties.getUser());
-        dataSource.setPassword(flywayProperties.getPassword());
-        dataSource.setUrl(flywayProperties.getUrl());
+        dataSource.setUsername(flywayProperties.get("flyway.user"));
+        dataSource.setPassword(flywayProperties.get("flyway.password"));
+        dataSource.setUrl(flywayProperties.get("flyway.url"));
         dataSource.setDriverClass(OracleDriver.class);
         return dataSource;
     }
 
     @Bean(initMethod = "migrate")
-    public Flyway flyway(DataSource dataSource, FlywayProperties properties) {
+    public Flyway flyway(DataSource dataSource, FlywayProperties flywayProperties) {
         Flyway flyway = new Flyway();
         flyway.setDataSource(dataSource);
+        flyway.setLocations(flywayProperties.get("flyway.locations").split(","));
         return flyway;
     }
 
     @Configuration
-    @PropertySource(name="flywayProperties", value = "classpath:flyway.properties")
+    @PropertySource(name="flywayProperties", value = "file:c:/projects/flyway-demo/workspace/app/flyway.properties")
     public static class FlywayProperties {
 
         @Autowired
         private Environment env;
 
-        public String getUser() {
-            return env.getProperty("flyway.user");
-        }
-
-        public String getPassword() {
-            return env.getProperty("flyway.password");
-        }
-
-        public String getUrl() {
-            return env.getProperty("flyway.url");
+        public String get(String key) {
+            return env.getProperty(key);
         }
     }
 
