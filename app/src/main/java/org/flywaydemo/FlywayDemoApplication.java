@@ -37,6 +37,7 @@ public class FlywayDemoApplication {
         Flyway flyway = new Flyway();
         flyway.setDataSource(dataSource);
         flyway.setLocations(flywayProperties.get("flyway.locations").split(","));
+        flyway.setCallbacksAsClassNames(flywayProperties.get("flyway.callbacks"));
         return flyway;
     }
 
